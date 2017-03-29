@@ -22,13 +22,38 @@ Then inside the docker I compile, install and test
 
 That's it!
 
-## Ripgrup
+## Ripgrep
 
-[Ripgrup](https://github.com/BurntSushi/ripgrep) is a super fast system grep that is written in RUST and use multi-core when available
+[Ripgrep](https://github.com/BurntSushi/ripgrep) is a super fast system grep that is written in RUST and use multi-core when available
+
+### Install Rust
+
+    curl https://sh.rustup.rs -sSf | sh
+    source $HOME/.cargo/env
+
+### Install & compile ripgrep
+
+    cargo install ripgrep
+
+### Package **rg**
+
+    mkdir deb-package-ripgrep
+    cd deb-package-ripgrep
+    wget https://github.com/BurntSushi/ripgrep/archive/0.5.0.tar.gz
+    mv 0.5.0.tar.gz ripgrep_0.5.0.orig.tar.gz
+    bzr whoami "Sébastien Barbieri <sebastien.barbieri@gmail.com>"
+    bzr launchpad-login sebastien-barbieri
+    export DEBEMAIL="sebastien.barbieri@gmail.com"
+    export DEBFULLNAME="Sébastien Barbieri"
+    bzr dh-make ripgrep 0.5 ripgrep_0.5.0.orig.tar.gz
+    cd ripgrep/debian
+    rm *ex *EX
+
+
 
 ## Maintenance
 
 ### Building this docker
 
-docker build -t docker-ubuntu-devel .
+docker build -t docker-ubuntu-devel:ripgrep-latest .
 
