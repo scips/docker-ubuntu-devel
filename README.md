@@ -2,6 +2,12 @@
 
 Made on top of Ubuntu:16.04
 
+Simply do
+
+    docker build .
+
+to build this docker
+
 Used to test make / make install of c/c++ programs
 
 ## Sphinxsearch
